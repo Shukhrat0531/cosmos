@@ -8,8 +8,10 @@ import 'package:cosmos/pages/home/ar_detail.dart';
 import 'package:cosmos/pages/home/game_detailist.dart';
 import 'package:cosmos/pages/home/sets_detailist.dart';
 import 'package:cosmos/pages/main_page.dart';
+import 'package:cosmos/pages/menu/log_oute.dart';
 import 'package:cosmos/pages/menu/menu.dart';
 import 'package:cosmos/pages/menu/menu_bonus.dart';
+import 'package:cosmos/pages/menu/menu_help.dart';
 import 'package:cosmos/pages/menu/menu_language.dart';
 import 'package:cosmos/pages/menu/menu_order.dart';
 import 'package:cosmos/pages/menu/menu_order_empty.dart';
@@ -64,6 +66,8 @@ import '../pages/splash_screen.dart';
         AutoRoute(page: MenuLanguage, path: 'menues_language'),
         AutoRoute(page: MenuOrderEmpty, path: 'menues_order_empty'),
         AutoRoute(page: MenuBonus, path: 'menues_bonus'),
+        AutoRoute(page: MenuHelp, path: 'menues_help'),
+        AutoRoute(page: MenuLogOut, path: 'menues_help'),
       ])
     ]),
     AutoRoute(page: GetOrder),

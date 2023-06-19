@@ -1,6 +1,6 @@
 // import 'package:auto_route/auto_route.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:cosmos/const/const.dart';
-import 'package:cosmos/pages/authentiaction/confirmaton.dart';
 // import 'package:cosmos/pages/authentiaction/reapit_conf.dart';
 import 'package:cosmos/widgets/people.dart';
 import 'package:flutter/material.dart';
@@ -130,13 +130,8 @@ class _RegestrationState extends State<Regestration> {
                 minimumSize: Size(325, 60),
               ),
               onPressed: () {
-                 Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          AuthConf()), // замените MainScreen на ваш главный экран
-                );
-                // context.router.pushNamed('/Confirmation');
+                  // AutoRouter.of(context).push(AuthConf());
+                context.router.pushNamed('/auth-conf');
               },
               child: Text(
                 "Далее",
