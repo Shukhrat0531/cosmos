@@ -1,13 +1,22 @@
+import 'package:cosmos/pages/home/logic/bloc/home_bloc.dart';
+import 'package:cosmos/pages/home/logic/data/repository/repository.dart';
 import 'package:cosmos/routes/routes.gr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() {
   
-  runApp( MyApp());
+  runApp(  
+   MyApp()
+  );
 }
-
+// BlocProvider(
+//     child: MyApp(),
+//     create: (context)=> GenresBloc()
+   
+//    )
 
 class MyApp extends StatefulWidget {
   @override

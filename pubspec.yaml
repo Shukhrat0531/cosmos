@@ -50,6 +50,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: any  
+  equatable: ^2.0.5
 
   
   #state management
@@ -58,6 +59,7 @@ dependencies:
   json_annotation: ^4.3.0
   get_it: ^7.2.0
   provider: ^6.0.5
+  rxdart: ^0.27.7
   
 
 dev_dependencies:

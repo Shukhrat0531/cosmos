@@ -1,0 +1,1 @@
+enum SmsFor { login, register }
