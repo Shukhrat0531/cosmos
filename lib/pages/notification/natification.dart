@@ -6,16 +6,29 @@ class Natification extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: AppColors.primaryWhite,
-        title: Text("Уведомления",style: TextStyle(color: Colors.black),),
-        centerTitle: true,
+    return Stack(children: [
+      Image.asset(
+        "assets/images/Clip path group.png",
+        fit: BoxFit.cover,
+        width: MediaQuery.of(context).size.width,
       ),
-      body: Center(
-       child: Text("Уведомлений нет")
-      ),
-    );
+      Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+          title: Text(
+            "Уведомления",
+            style: TextStyle(color: Colors.white),
+          ),
+          centerTitle: true,
+        ),
+        body: Center(
+            child: Text(
+          "Уведомлений нет",
+          style: TextStyle(color: AppColors.primaryWhite),
+        )),
+      )
+    ]);
   }
 }

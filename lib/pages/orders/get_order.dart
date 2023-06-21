@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:cosmos/locals.dart';
 import 'package:flutter/material.dart';
 
 import '../../const/const.dart';
@@ -18,7 +19,15 @@ class _GetOrderState extends State<GetOrder> {
   @override
   Widget build(BuildContext context) {
     
-    return Scaffold(
+    return Stack(children: [
+      Image.asset(
+        "assets/images/Clip path group.png",
+        fit: BoxFit.cover,
+        width: MediaQuery.of(context).size.width,
+      ),
+    
+     Scaffold(
+      backgroundColor: Colors.transparent,
       appBar: AppBar(
         backgroundColor: AppColors.primaryWhite,
         elevation: 0,
@@ -33,14 +42,14 @@ class _GetOrderState extends State<GetOrder> {
               ),
             ),
             Text(
-              "Назад",
+              "${context.localized.back}",
               style: TextStyle(color: AppColors.primaryBottonBlue),
             ),
           ],
         ),
         title: Text(
-          'Способ получения',
-          style: TextStyle(color: AppColors.primaryBlack),
+          '${context.localized.orderMethod}',
+          style: TextStyle(color: AppColors.primaryBottonBlue),
         ),
         centerTitle: true,
       ),
@@ -54,7 +63,8 @@ class _GetOrderState extends State<GetOrder> {
           Padding(
             padding: const EdgeInsets.only(left: 25),
             child: Text(
-                "Стоимость доставки:\nПо городу:  бесплатно \nЗа городом: менеджер сообщит по \nтелефону "),
+                "Стоимость доставки:\nПо городу:  бесплатно \nЗа городом: менеджер сообщит по \nтелефону ",
+                style: TextStyle(color: AppColors.primaryWhite),),
           ),
           SizedBox(height: 30,),
           Align(
@@ -66,7 +76,7 @@ class _GetOrderState extends State<GetOrder> {
               child: Container(
                 height: 35,
                 width: 335,
-                decoration: BoxDecoration(border: Border.all(width: 1,color: AppColors.primaryBottonBlue)),
+                decoration: BoxDecoration(color: AppColors.primaryWhite),
                 child: TextButton(
                   onPressed: () async {
                     showModalBottomSheet(
@@ -260,11 +270,13 @@ class _GetOrderState extends State<GetOrder> {
                             }
                             );
                   }, 
-                  child: Text("Указать адрес доставки",style: TextStyle(color: AppColors.primaryBottonBlue),))),
+                  child: Text("${context.localized.setAddress}",style: TextStyle(color: AppColors.primaryBottonBlue),))),
             ),
           )
         ],
       ),
+    )
+    ]
     );
   }
 }

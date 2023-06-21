@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:cosmos/locals.dart';
 import 'package:flutter/material.dart';
 
 import '../../const/const.dart';
@@ -17,7 +18,15 @@ class _PayOrderState extends State<PayOrder> {
   bool light = true;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return
+    Stack(children: [
+      Image.asset(
+        "assets/images/Clip path group.png",
+        fit: BoxFit.cover,
+        width: MediaQuery.of(context).size.width,
+      ),
+     Scaffold(
+      backgroundColor: Colors.transparent,
       appBar: AppBar(
         backgroundColor: AppColors.primaryWhite,
         elevation: 0,
@@ -32,14 +41,14 @@ class _PayOrderState extends State<PayOrder> {
               ),
             ),
             Text(
-              "Назад",
+              "${context.localized.back}",
               style: TextStyle(color: AppColors.primaryBottonBlue),
             ),
           ],
         ),
         title: Text(
           'Способ оплаты',
-          style: TextStyle(color: AppColors.primaryBlack),
+          style: TextStyle(color: AppColors.primaryBottonBlue),
         ),
         centerTitle: true,
       ),
@@ -62,14 +71,14 @@ class _PayOrderState extends State<PayOrder> {
                   width: 180,
                   height: 42,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      border: Border.all(
-                          width: 1, color: AppColors.primaryBottonBlue)),
+                      borderRadius: BorderRadius.circular(10),
+                      color: AppColors.primaryWhite
+                      ),
                   child: TextButton(
                     onPressed: () {},
                     child: Text(
-                      "Оплата при доставке",
-                      style: TextStyle(color: AppColors.primaryBlack),
+                      "${context.localized.payByHands}",
+                      style: TextStyle(color: AppColors.primaryBottonBlue),
                     ),
                   ),
                 ),
@@ -82,8 +91,11 @@ class _PayOrderState extends State<PayOrder> {
               children: [
                 Switch(
                   // This bool value toggles the switch.
+                  inactiveThumbColor: Colors.grey,
+                  inactiveTrackColor: AppColors.primaryWhite,
                   value: light,
-                  activeColor: AppColors.primaryBottonBlue,
+                  activeTrackColor: Color(0xFF3F7FFF),
+                  activeColor: AppColors.primaryWhite,
                   onChanged: (bool value) {
                     // This is called when the user toggles the switch.
                     setState(() {
@@ -94,27 +106,31 @@ class _PayOrderState extends State<PayOrder> {
                 SizedBox(
                   width: 10,
                 ),
-                Text("Потратить бонусы"),
+                Text("${context.localized.useBonus}",style: TextStyle(color: AppColors.primaryWhite),),
                 SizedBox(
-                  width: 100,
+                  width: 60,
                 ),
                 Text(
                   "3 421 Б",
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                  style: TextStyle(fontWeight: FontWeight.bold,color: AppColors.primaryWhite),
                 )
               ],
             ),
             SizedBox(
               height: 20,
             ),
-            Text("У меня есть промокод"),
+            Text("${context.localized.havePromocode}",
+                style: TextStyle(color: AppColors.primaryWhite),
+              ),
             SizedBox(height: 11,),
             Row(
               children: [
                 Container(
                   width: 160,
                   height: 40,
+                  decoration: BoxDecoration(color: AppColors.primaryWhite,borderRadius: BorderRadius.circular(10)),
                   child: TextField(
+                    
                     onChanged: (value) => frend = value,
                     decoration: InputDecoration(
                       labelText: 'Введите промокод ',
@@ -147,11 +163,12 @@ class _PayOrderState extends State<PayOrder> {
                       borderRadius: BorderRadius.circular(10),
                       color: frend.length == 8
                           ? AppColors.primaryBottonBlue
-                          : Color(0xFFCDCDCD)),
+                          : Color(0xFF3F7FFF),
+                    ),
                   child: TextButton(
                     onPressed: () {},
                     child: Text(
-                      "Применить",
+                      "${context.localized.use}",
                       style: TextStyle(
                         color: Colors.white,
                       ),
@@ -167,11 +184,11 @@ class _PayOrderState extends State<PayOrder> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Итого к оплате ",style: TextStyle(fontSize: 20,),),
+                  Text("${context.localized.finalCost} ",style: TextStyle(fontSize: 20,color: AppColors.primaryWhite),),
                   Text(
                     "2 579 ₸",
                     style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 20,color: AppColors.primaryWhite
                     ),
                   )
                 ],
@@ -182,7 +199,7 @@ class _PayOrderState extends State<PayOrder> {
               width: 355,
               height: 56,
               decoration: BoxDecoration(
-                  color: AppColors.primaryBottonBlue,
+                  color: AppColors.primaryWhite,
                   borderRadius: BorderRadius.circular(15)),
               child: TextButton(
                 onPressed: () {
@@ -192,7 +209,7 @@ class _PayOrderState extends State<PayOrder> {
                 child: Text(
                   'Оформить',
                   style: TextStyle(
-                      color: AppColors.primaryWhite,
+                      color: AppColors.primaryBottonBlue,
                       fontSize: 16,
                       fontWeight: FontWeight.bold),
                 ),
@@ -201,6 +218,9 @@ class _PayOrderState extends State<PayOrder> {
           ],
         ),
       ),
+    )
+    ]
     );
+    
   }
 }

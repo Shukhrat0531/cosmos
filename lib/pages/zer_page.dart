@@ -1,6 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cosmos/const/const.dart';
+import 'package:cosmos/locals.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 import 'package:flutter/material.dart';
+
+import '../main.dart';
 
 class ZeroPage extends StatelessWidget {
   const ZeroPage({super.key});
@@ -35,7 +40,9 @@ class ZeroPage extends StatelessWidget {
                 minimumSize: Size(325, 60),
               ),
               onPressed: () {
-                
+                context.router.pushNamed('/splash-screen');
+                final appState = LanguageProvider.of(context);
+                appState.setLocale(Locale('kk', 'KZ'));
               },
               child: Text(
                 "Қазақша",
@@ -50,6 +57,9 @@ class ZeroPage extends StatelessWidget {
               ),
               onPressed: () {
                 context.router.pushNamed('/splash-screen');
+                final appState = LanguageProvider.of(context);
+                appState.setLocale(Locale('ru', 'RU'));
+               
               },
               child: Text(
                 "Русский",
@@ -59,6 +69,8 @@ class ZeroPage extends StatelessWidget {
                     color: Colors.black),
               ),
             ),
+
+            Text(context.localized.helloWorld),
           ],
         ),
       ),

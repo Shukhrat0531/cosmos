@@ -2,6 +2,7 @@
 // import 'package:bord/routes/routes.gr.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:cosmos/const/const.dart';
+import 'package:cosmos/locals.dart';
 // import 'package:cosmos/pages/authentiaction/real_register.dart';
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
@@ -69,7 +70,7 @@ class _AuthorizationState extends State<Authorization> {
                 onPressed: () {
                   context.router.pushNamed('/Regestration');
                 },
-                child: Text('Зарегистрироваться',
+                child: Text('${context.localized.register}',
                     style: TextStyle(color: AppColors.primaryWhite, fontSize: 16)),
               ),
             ),
@@ -84,7 +85,7 @@ class _AuthorizationState extends State<Authorization> {
                   padding: const EdgeInsets.only(top: 70),
                   child: Center(
                       child: Text(
-                    "Войти",
+                    "${context.localized.signIn}",
                     style: TextStyle(fontSize: 24, fontWeight: FontWeight.w400,color: AppColors.primaryWhite),
                   )),
                 ),
@@ -121,7 +122,7 @@ class _AuthorizationState extends State<Authorization> {
                         },
                       // Если символов 11, то кнопка активна
                   child: Text(
-                    "Далее",
+                    "${context.localized.next}",
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w700,

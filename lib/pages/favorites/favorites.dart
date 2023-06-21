@@ -13,15 +13,23 @@ class Favorites extends StatefulWidget {
 class _FavoritesState extends State<Favorites> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.primaryWhite,
+    return 
+     Stack(
+      children: [
+        Image.asset(
+          "assets/images/Clip path group.png",
+          fit: BoxFit.cover,
+          width: MediaQuery.of(context).size.width,
+        ),
+    Scaffold(
+      backgroundColor: Colors.transparent,
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: AppColors.primaryWhite,
+        backgroundColor: Colors.transparent,
         leadingWidth: 220,
         leading: Padding(
           padding: const EdgeInsets.only(top: 10,left: 20),
-          child: Text("Избранные",style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold,color: AppColors.primaryBlack),),
+          child: Text("Избранные",style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold,color: AppColors.primaryWhite),),
         ),
       ),
       body: Padding(
@@ -39,6 +47,8 @@ class _FavoritesState extends State<Favorites> {
           ),
         ),
       ),
-    );
+    )
+      ]
+     );
   }
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../const/const.dart';
+
 class CartItem extends StatelessWidget {
   const CartItem({super.key});
 
@@ -13,6 +15,7 @@ class CartItem extends StatelessWidget {
             Container(
                 height: 96,
                 width: 96,
+                decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(15)),
                 child: Image.asset('assets/images/image (1).png')),
             SizedBox(
               width: 15,
@@ -25,7 +28,7 @@ class CartItem extends StatelessWidget {
                   alignment: Alignment.bottomLeft,
                   child: Text(
                     "PlayStation 5",
-                    style: TextStyle(fontSize: 16),
+                    style: TextStyle(fontSize: 16, color: AppColors.primaryWhite),
                   ),
                 ),
                 SizedBox(height: 10,),
@@ -33,7 +36,8 @@ class CartItem extends StatelessWidget {
                   alignment: Alignment.bottomLeft,
                   child: Text(
                     "6 000 ₸",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16,
+                        color: AppColors.primaryWhite),
                   ),
                 ),
                 Row(
@@ -43,6 +47,7 @@ class CartItem extends StatelessWidget {
                       "3 суток",
                       style: TextStyle(
                         fontSize: 18,
+                        color: AppColors.primaryWhite
                       ),
                     ),
                     SizedBox(
@@ -52,7 +57,7 @@ class CartItem extends StatelessWidget {
                       onPressed: () {},
                       child: Text(
                         "Удалить",
-                        style: TextStyle(color: Color(0xFF3175ED)),
+                        style: TextStyle(color: AppColors.primaryWhite),
                       ),
                     ),
                   ],

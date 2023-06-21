@@ -7,7 +7,16 @@ class MenuBonus extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return
+    Stack(
+      children: [
+        Image.asset(
+          "assets/images/Clip path group.png",
+          fit: BoxFit.cover,
+          width: MediaQuery.of(context).size.width,
+        ),
+     Scaffold(
+      backgroundColor: Colors.transparent,
       appBar: AppBar(
         backgroundColor: AppColors.primaryWhite,
         elevation: 0,
@@ -28,8 +37,8 @@ class MenuBonus extends StatelessWidget {
           ],
         ),
         title: Text(
-          'Способ получения',
-          style: TextStyle(color: AppColors.primaryBlack),
+          'Как получить бонусы',
+          style: TextStyle(color: AppColors.primaryBottonBlue),
         ),
         centerTitle: true,
       ),
@@ -41,7 +50,7 @@ class MenuBonus extends StatelessWidget {
             SizedBox(height: 20,),
             Container(
               decoration: BoxDecoration(
-                  color: AppColors.primaryWhite,
+                  color: Color(0xFF3E71D9),
                   borderRadius: BorderRadius.circular(10),
                   boxShadow: [
                     BoxShadow(
@@ -60,6 +69,7 @@ class MenuBonus extends StatelessWidget {
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
+                        color: AppColors.primaryWhite,
                       ),
                     ),
                   ),
@@ -71,7 +81,9 @@ class MenuBonus extends StatelessWidget {
                         const EdgeInsets.only(left: 15, right: 15, bottom: 15),
                     child: Text(
                       "За каждые 5 завершенных заказов в аренду вы получите 5000 Бонусов",
-                      style: TextStyle(fontSize: 16),
+                      style: TextStyle(fontSize: 16,
+                          color: AppColors.primaryWhite,
+                        ),
                     ),
                   )
                 ],
@@ -82,7 +94,7 @@ class MenuBonus extends StatelessWidget {
             ),
             Container(
               decoration: BoxDecoration(
-                  color: AppColors.primaryWhite,
+                  color: Color(0xFF3E71D9),
                   borderRadius: BorderRadius.circular(10),
                   boxShadow: [
                     BoxShadow(
@@ -101,6 +113,7 @@ class MenuBonus extends StatelessWidget {
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
+                        color: AppColors.primaryWhite,
                       ),
                     ),
                   ),
@@ -112,7 +125,9 @@ class MenuBonus extends StatelessWidget {
                         const EdgeInsets.only(left: 15, right: 15, bottom: 15),
                     child: Text(
                       "В некоторых товарах мы указали количество бонусов которые вы можете получить после их заказа в аренду",
-                      style: TextStyle(fontSize: 16),
+                      style: TextStyle(fontSize: 16,
+                      color: AppColors.primaryWhite,
+                        ),
                     ),
                   )
                 ],
@@ -123,7 +138,7 @@ class MenuBonus extends StatelessWidget {
             ),
             Container(
               decoration: BoxDecoration(
-                  color: AppColors.primaryWhite,
+                  color: Color(0xFF3E71D9),
                   borderRadius: BorderRadius.circular(10),
                   boxShadow: [
                     BoxShadow(
@@ -142,6 +157,7 @@ class MenuBonus extends StatelessWidget {
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
+                        color: AppColors.primaryWhite,
                       ),
                     ),
                   ),
@@ -153,7 +169,9 @@ class MenuBonus extends StatelessWidget {
                         const EdgeInsets.only(left: 15, right: 15, bottom: 15),
                     child: Text(
                       "Отправьте промокод друзьям и как только 3 из них закажут у нас в аренду, вы получите 1000 Бонусов",
-                      style: TextStyle(fontSize: 16),
+                      style: TextStyle(fontSize: 16,
+                      color: AppColors.primaryWhite,
+                        ),
                     ),
                   ),
                   SizedBox(height: 20,),
@@ -161,7 +179,7 @@ class MenuBonus extends StatelessWidget {
                     width: 305,
                     height: 56,
                     decoration: BoxDecoration(
-                        color: Color(0xFFF8F8F8),
+                        color: Color(0xFF3E71D9),
                         borderRadius: BorderRadius.circular(15)),
                     child: TextButton(
                       onPressed: () {
@@ -203,6 +221,8 @@ class MenuBonus extends StatelessWidget {
           ],
         ),
       ),
+    )
+      ]
     );
   }
 }

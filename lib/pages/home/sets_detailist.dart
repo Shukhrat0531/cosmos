@@ -139,7 +139,7 @@ class SetsDetails extends StatelessWidget {
                         decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(50)),
-                        height: MediaQuery.of(context).size.height * .45,
+                        height: MediaQuery.of(context).size.height * .50,
                         child: Padding(
                           padding: const EdgeInsets.only(left: 20,right: 20),
                           child: Column(

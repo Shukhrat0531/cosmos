@@ -1,4 +1,5 @@
 import 'package:cosmos/const/const.dart';
+import 'package:cosmos/locals.dart';
 import 'package:flutter/material.dart';
 
 
@@ -47,7 +48,7 @@ class _PeopleState extends State<People> {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         buildGenderButton(
-          label: 'Мальчик',
+          label: '${context.localized.male}',
           isSelected: isMaleSelected,
           onPressed: () {
             setState(() {
@@ -58,7 +59,7 @@ class _PeopleState extends State<People> {
         ),
         SizedBox(width: 7,),
         buildGenderButton(
-          label: 'Девочка',
+          label: '${context.localized.female}',
           isSelected: isFemaleSelected,
           onPressed: () {
             setState(() {

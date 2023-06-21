@@ -1,6 +1,7 @@
 // import 'package:auto_route/auto_route.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:cosmos/const/const.dart';
+import 'package:cosmos/locals.dart';
 // import 'package:cosmos/pages/authentiaction/reapit_conf.dart';
 import 'package:cosmos/widgets/people.dart';
 import 'package:flutter/material.dart';
@@ -60,7 +61,7 @@ class _RegestrationState extends State<Regestration> {
               padding: const EdgeInsets.only(top: 80),
               child: Center(
                   child: Text(
-                "Зарегистрироваться",
+                "${context.localized.register}",
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold,color: AppColors.primaryWhite),
               )),
             ),
@@ -71,11 +72,11 @@ class _RegestrationState extends State<Regestration> {
             SizedBox(
               height: 10,
             ),
-            buildTextField('Имя', nameController, TextInputType.text),
+            buildTextField('${context.localized.name}', nameController, TextInputType.text),
             SizedBox(
               height: 10,
             ),
-            buildTextField('Фамилия', surnameController, TextInputType.text),
+            buildTextField('${context.localized.surname}', surnameController, TextInputType.text),
             SizedBox(
               height: 10,
             ),
@@ -89,7 +90,7 @@ class _RegestrationState extends State<Regestration> {
               child: Row(
                 children: [
                   Text(
-                    "Пол:   ",
+                    "${context.localized.gender}:   ",
                     style: TextStyle(fontSize: 16, color:AppColors.primaryWhite),
                   ),
                   People()
@@ -100,7 +101,7 @@ class _RegestrationState extends State<Regestration> {
             SizedBox(
               height: 10,
             ),
-            buildTextField('Код друга (не обезятельно)', friendCodeController,
+            buildTextField('${context.localized.friendsCode}', friendCodeController,
                 TextInputType.text),
             SizedBox(
               height: 10,
@@ -117,7 +118,7 @@ class _RegestrationState extends State<Regestration> {
                           isCheked = newBoo!;
                         });
                       }),
-                  Text("Я ознакомлен с Публичной офертой",style: TextStyle(color: AppColors.primaryWhite),)
+                  Text("${context.localized.offert}",style: TextStyle(color: AppColors.primaryWhite),)
                 ],
               ),
             ),
@@ -134,7 +135,7 @@ class _RegestrationState extends State<Regestration> {
                 context.router.pushNamed('/auth-conf');
               },
               child: Text(
-                "Далее",
+                "${context.localized.next}",
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700,color: AppColors.primaryBlack),
               ),
             ),

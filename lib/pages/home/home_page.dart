@@ -1,5 +1,6 @@
 import 'package:carousel_indicator/carousel_indicator.dart';
 import 'package:cosmos/const/const.dart';
+import 'package:cosmos/locals.dart';
 import 'package:cosmos/widgets/call_chat.dart';
 import 'package:cosmos/widgets/sets.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +42,7 @@ class _HomePageState extends State<HomePage> {
           appBar: AppBar(
             elevation: 0,
             backgroundColor: Colors.transparent,
-            title: Text("Home Page"),
+            title: Text("${context.localized.main}"),
           ),
           body: SingleChildScrollView(
             scrollDirection: Axis.vertical,
@@ -97,7 +98,7 @@ class _HomePageState extends State<HomePage> {
                           Align(
                               alignment: Alignment.bottomLeft,
                               child: Text(
-                                "Игры",
+                                "${context.localized.games}",
                                 style: TextStyle(
                                     color: AppColors.primaryWhite,
                                     fontSize: 16,
@@ -113,7 +114,7 @@ class _HomePageState extends State<HomePage> {
                           Align(
                               alignment: Alignment.bottomLeft,
                               child: Text(
-                                "Аренда",
+                                "${context.localized.arenda}",
                                 style: TextStyle(
                                     color: AppColors.primaryWhite,
                                     fontSize: 16,

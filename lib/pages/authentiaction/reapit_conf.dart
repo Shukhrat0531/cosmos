@@ -1,6 +1,7 @@
 // import 'package:auto_route/auto_route.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:cosmos/const/const.dart';
+import 'package:cosmos/locals.dart';
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
 
@@ -64,7 +65,7 @@ class _ConfirmationState extends State<Confirmation> {
               padding: const EdgeInsets.only(top: 30),
               child: Center(
                   child: Text(
-                "СМС подтверждение",
+                "${context.localized.smsVer}",
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.w400,color: AppColors.primaryWhite),
               )),
             ),
@@ -77,7 +78,7 @@ class _ConfirmationState extends State<Confirmation> {
               submittedPinTheme: submittedPinTheme,
             ),
             TextButton(
-              child: Text('Отправить код ещё раз '),
+              child: Text('${context.localized.sendCodeAgain}'),
               onPressed: () {
                 //  Navigator.pushReplacement(
                 //   context,
@@ -99,7 +100,7 @@ class _ConfirmationState extends State<Confirmation> {
                 context.router.push(MainWidget());
               },
               child: Text(
-                "Войти",
+                "${context.localized.signIn}",
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700,color: AppColors.primaryBlack),
               ),
             ),

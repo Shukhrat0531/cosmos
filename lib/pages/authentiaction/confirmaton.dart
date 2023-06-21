@@ -1,6 +1,7 @@
 // import 'package:auto_route/auto_route.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:cosmos/const/const.dart';
+import 'package:cosmos/locals.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/current_remaining_time.dart';
@@ -77,7 +78,7 @@ class _AuthConfState extends State<AuthConf> {
                   padding: const EdgeInsets.only(top: 60),
                   child: Center(
                       child: Text(
-                    "СМС подтверждение",
+                    "${context.localized.smsVer}",
                     style: TextStyle(fontSize: 24, fontWeight: FontWeight.w400,color: AppColors.primaryWhite),
                   )),
                 ),
@@ -130,7 +131,7 @@ class _AuthConfState extends State<AuthConf> {
                 
                   },
                   child: Text(
-                    "Войти",
+                    "${context.localized.signIn}",
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700,color: AppColors.primaryBlack),
                   ),
                 ),

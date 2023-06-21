@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:cosmos/locals.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -17,7 +18,15 @@ class _GetContinueState extends State<GetContinue> {
   bool isChecked = true;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return
+     Stack(children: [
+      Image.asset(
+        "assets/images/Clip path group.png",
+        fit: BoxFit.cover,
+        width: MediaQuery.of(context).size.width,
+      ),
+     Scaffold(
+      backgroundColor: Colors.transparent,
       appBar: AppBar(
         backgroundColor: AppColors.primaryWhite,
         elevation: 0,
@@ -32,14 +41,14 @@ class _GetContinueState extends State<GetContinue> {
               ),
             ),
             Text(
-              "Назад",
+              "${context.localized.back}",
               style: TextStyle(color: AppColors.primaryBottonBlue),
             ),
           ],
         ),
         title: Text(
-          'Способ получения',
-          style: TextStyle(color: AppColors.primaryBlack),
+          '${context.localized.orderMethod}',
+          style: TextStyle(color: AppColors.primaryBottonBlue),
         ),
         centerTitle: true,
       ),
@@ -53,7 +62,8 @@ class _GetContinueState extends State<GetContinue> {
           Padding(
             padding: const EdgeInsets.only(left: 25),
             child: Text(
-                "Стоимость доставки:\nПо городу:  бесплатно \nЗа городом: менеджер сообщит по \nтелефону "),
+                "Стоимость доставки:\nПо городу:  бесплатно \nЗа городом: менеджер сообщит по \nтелефону ",
+                style: TextStyle(color: AppColors.primaryWhite),),
           ),
           SizedBox(
             height: 30,
@@ -62,7 +72,9 @@ class _GetContinueState extends State<GetContinue> {
             padding: const EdgeInsets.only(left: 25),
             child: Row(
               children: [
-                Text('Г. Алматы, Желтоксан 35, 39'),
+                Text('Г. Алматы, Желтоксан 35, 39',
+                    style: TextStyle(color: AppColors.primaryWhite),
+                  ),
           
                  TextButton(
                   onPressed: () {
@@ -206,18 +218,18 @@ class _GetContinueState extends State<GetContinue> {
                                     child: Row(
                                       children: [
                                         SizedBox(
-                                          width: 30,
+                                          width: 15,
                                         ),
                                         Icon(
                                           Icons.add,
                                           color: AppColors.primaryBottonBlue,
                                         ),
                                         SizedBox(
-                                          width: 35,
+                                          width: 15,
                                         ),
                                         Text("Добавить новый адрес"),
                                         SizedBox(
-                                          width: 35,
+                                          width: 60,
                                         ),
                                         IconButton(
                                           onPressed: () {},
@@ -252,7 +264,7 @@ class _GetContinueState extends State<GetContinue> {
                   },
                   child: Text(
                     'Изменить адрес',
-                    style: TextStyle(color: AppColors.primaryBottonBlue),
+                    style: TextStyle(color: AppColors.primaryWhite),
                   ),
                 )
               ],
@@ -271,7 +283,7 @@ class _GetContinueState extends State<GetContinue> {
           width: 335,
           height: 46,
           decoration: BoxDecoration(
-              color: AppColors.primaryBottonBlue,
+              color: AppColors.primaryWhite,
               borderRadius: BorderRadius.circular(10)),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -279,7 +291,7 @@ class _GetContinueState extends State<GetContinue> {
               Text(
                 'Оформить заказ',
                 style: TextStyle(
-                    color: AppColors.primaryWhite,
+                    color: AppColors.primaryBottonBlue,
                     fontSize: 16,
                     fontWeight: FontWeight.bold),
               ),
@@ -287,6 +299,8 @@ class _GetContinueState extends State<GetContinue> {
           ),
         ),
       ),
-    );
+    )
+     ]
+     );
   }
 }
