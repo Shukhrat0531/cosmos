@@ -3,10 +3,15 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cosmos/const/const.dart';
 import 'package:cosmos/locals.dart';
+import 'package:extended_masked_text/extended_masked_text.dart';
 // import 'package:cosmos/pages/authentiaction/real_register.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
+import '../../dependencies/getIt.dart';
+import '../../routes/routes.gr.dart';
+import 'logic/bloc/auth_bloc.dart';
 
 // import 'package:bord/pages/regestration/register.dart';
 // import 'package:pinput/pinput.dart';
@@ -20,117 +25,139 @@ class Authorization extends StatefulWidget {
 class _AuthorizationState extends State<Authorization> {
   TextEditingController controller = TextEditingController();
 
-  final maskFormatter = new MaskTextInputFormatter(
-      mask: '+7 (###) ###-##-##',
-      filter: {"7": RegExp(r'[0-9]')},
-      type: MaskAutoCompletionType.lazy);
-
-  bool isElevenChars = false;
-  @override
-  void initState() {
-    super.initState();
-    controller.addListener(() {
-      if (controller.text.length == 11 && !isElevenChars) {
-        setState(() {
-          isElevenChars = true;
-        });
-      } else if (controller.text.length != 11 && isElevenChars) {
-        setState(() {
-          isElevenChars = false;
-        });
-      }
-    });
-  }
+  final TextEditingController _phoneNumber =
+      MaskedTextController(mask: '+7 (000) 000-00-00', text: '7');
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assets/images/Clip path group.png"),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: Scaffold(
-        backgroundColor: const Color.fromARGB(0, 255, 255, 255),
-        appBar: AppBar(
-          backgroundColor: const Color.fromARGB(0, 255, 255, 255),
-          elevation: 0,
-          leading: Padding(
-            padding: const EdgeInsets.only(top: 20),
-            child: IconButton(
-              icon: Icon(Icons.arrow_back, color: const Color.fromARGB(255, 255, 255, 255)),
-              onPressed: () => Navigator.pop(context),
-            ),
+    return BlocProvider(
+      create: (context) => getIt<AuthBloc>(),
+      child: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/Clip path group.png"),
+            fit: BoxFit.cover,
           ),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(right: 30, top: 20),
-              child: TextButton(
-                onPressed: () {
-                  context.router.pushNamed('/Regestration');
-                },
-                child: Text('${context.localized.register}',
-                    style: TextStyle(color: AppColors.primaryWhite, fontSize: 16)),
+        ),
+        child: Scaffold(
+          backgroundColor: const Color.fromARGB(0, 255, 255, 255),
+          appBar: AppBar(
+            backgroundColor: const Color.fromARGB(0, 255, 255, 255),
+            elevation: 0,
+            leading: Padding(
+              padding: const EdgeInsets.only(top: 20),
+              child: IconButton(
+                icon: Icon(Icons.arrow_back,
+                    color: const Color.fromARGB(255, 255, 255, 255)),
+                onPressed: () => Navigator.pop(context),
               ),
             ),
-          ],
-        ),
-        body: Container(
-          
-          child: SafeArea(
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 70),
-                  child: Center(
-                      child: Text(
-                    "${context.localized.signIn}",
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.w400,color: AppColors.primaryWhite),
-                  )),
+            actions: [
+              Padding(
+                padding: const EdgeInsets.only(right: 30, top: 20),
+                child: TextButton(
+                  onPressed: () {
+                    context.router.pushNamed('/Regestration');
+                  },
+                  child: Text('${context.localized.register}',
+                      style: TextStyle(
+                          color: AppColors.primaryWhite, fontSize: 16)),
                 ),
-                SizedBox(
-                  height: 35,
-                ),
-                Container(
-                  decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(10)),
-                  width: 325,
-                  height: 50,
-                  child: TextField(
-                    controller: controller,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Colors.grey,
+              ),
+            ],
+          ),
+          body: Container(
+            child: SafeArea(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 70),
+                    child: Center(
+                        child: Text(
+                      "${context.localized.signIn}",
+                      style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.w400,
+                          color: AppColors.primaryWhite),
+                    )),
+                  ),
+                  SizedBox(
+                    height: 35,
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: AppColors.primaryWhite,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    width: 325,
+                    height: 50,
+                    child: TextField(
+                      controller: _phoneNumber,
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: const Color.fromARGB(255, 255, 255, 255),
+                          ),
                         ),
+                        hintText: "747 870 77 44",
                       ),
-                      hintText: "+7(777)777 77 77",
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: 30,
-                ),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.primaryWhite,// Изменяем цвет в соответствии с состоянием
-                    minimumSize: Size(325, 60),
+                  SizedBox(
+                    height: 30,
                   ),
-                  onPressed: 
-                      () {
-                          context.router.pushNamed('/auth-conf');
-                        },
-                      // Если символов 11, то кнопка активна
-                  child: Text(
-                    "${context.localized.next}",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.black
-                    ),
+                  BlocConsumer<AuthBloc, AuthState>(
+                    listener: (context, state) {
+                    if( state is LoginSuccess){
+                      context.router.push(AuthConf(smsFor: "1", phoneNumber: _phoneNumber.text));
+                    }else if (state is LoginFailed){
+                      showDialog(
+                          context: context,
+                          builder: (ctx) => AlertDialog(
+                            title: const Text(""),
+                            content: const Text("Не коректно"),
+                            actions: <Widget>[
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.of(ctx).pop();
+                                },
+                                child: Container(
+                                  color: Colors.green,
+                                  padding: const EdgeInsets.all(14),
+                                  child: const Text("okay"),
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                    }
+                        
+                    
+                             
+                    },
+                    builder: (context, state) {
+                      return ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColors
+                              .primaryWhite, // Изменяем цвет в соответствии с состоянием
+                          minimumSize: Size(325, 60),
+                        ),
+                        onPressed: () => context.read<AuthBloc>().add(LoginUser(
+                          phone:_phoneNumber.text
+                        )),
+                        child: Text(
+                          "${context.localized.next}",
+                          style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.black),
+                        ),
+                      );
+                    },
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

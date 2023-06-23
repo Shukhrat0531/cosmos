@@ -12,3 +12,4 @@ class LoadGenres extends GenreEvent {
   List<Object?> get props => [];
 
 }
+

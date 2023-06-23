@@ -50,123 +50,134 @@ class _HomePageState extends State<HomePage> {
               backgroundColor: Colors.transparent,
               title: Text("${context.localized.main}"),
             ),
-            body: SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: Column(
-                children: [
-                  Container(
-                    margin: EdgeInsets.only(
-                        top:
-                            0), // Должно соответствовать высоте верхнего контейнера
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.vertical,
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 23, right: 23),
-                        child: Column(
-                          children: [
-                            SizedBox(
-                              height: 25,
-                            ),
-                            BlocBuilder<GenreBloc, GenreState>(
-                              builder:(context, state){
-                                return CarouselSlider(
-                                options: CarouselOptions(
-                                  onPageChanged: (index, reason) {
-                                    setState(() {
-                                      pageIndex = index;
-                                    });
-                                  },
-                                  enlargeCenterPage: true,
-                                  height: 155,
-                                  viewportFraction: 1.0,
+            body: BlocBuilder<GenreBloc, GenreState>(
+              builder: (context, state) {
+                if( state is GenresError){
+                  return Text("error sets");
+                }else if( state is GenresSuccess){
+                  return SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  child: Column(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(
+                            top:
+                                0), // Должно соответствовать высоте верхнего контейнера
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.vertical,
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 23, right: 23),
+                            child: Column(
+                              children: [
+                                SizedBox(
+                                  height: 25,
                                 ),
-                                items: imgList.map((item) {
-                                  return Container(
-                                    width: 355,
-                                    margin: EdgeInsets.only(),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(5.0),
-                                      child: Image.asset(
-                                        '$item',
-                                        fit: BoxFit.cover,
-                                      ), 
+                                BlocBuilder<GenreBloc, GenreState>(
+                                    builder: (context, state) {
+                                  return CarouselSlider(
+                                    options: CarouselOptions(
+                                      onPageChanged: (index, reason) {
+                                        setState(() {
+                                          pageIndex = index;
+                                        });
+                                      },
+                                      enlargeCenterPage: true,
+                                      height: 155,
+                                      viewportFraction: 1.0,
                                     ),
+                                    items: imgList.map((item) {
+                                      return Container(
+                                        width: 355,
+                                        margin: EdgeInsets.only(),
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(5.0),
+                                          child: Image.asset(
+                                            '$item',
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                      );
+                                    }).toList(),
                                   );
-                                }).toList(),
-                              );}
+                                }),
+                                CarouselIndicator(
+                                  color: Color(0xFFCCCCCC),
+                                  activeColor: AppColors.primaryBottonBlue,
+                                  count: imgList.length,
+                                  index: pageIndex,
+                                ),
+                                SizedBox(
+                                  height: 7,
+                                ),
+                                Align(
+                                    alignment: Alignment.bottomLeft,
+                                    child: Text(
+                                      "${context.localized.games}",
+                                      style: TextStyle(
+                                          color: AppColors.primaryWhite,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold),
+                                    )),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                CategorySlider(),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Align(
+                                    alignment: Alignment.bottomLeft,
+                                    child: Text(
+                                      "${context.localized.arenda}",
+                                      style: TextStyle(
+                                          color: AppColors.primaryWhite,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold),
+                                    )),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                CategoryAr(),
+                                SizedBox(
+                                  height: 17,
+                                ),
+                                CallChat(),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Align(
+                                    alignment: Alignment.bottomLeft,
+                                    child: Text(
+                                      "Сеты",
+                                      style: TextStyle(
+                                          color: AppColors.primaryWhite,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold),
+                                    )),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                // Wrap(
+                                //   spacing: 22,
+                                //   runSpacing: 20,
+                                //   children:[
+                                Sets(list: state.sets),
+
+                                // ]),
+                              ],
                             ),
-                            CarouselIndicator(
-                              color: Color(0xFFCCCCCC),
-                              activeColor: AppColors.primaryBottonBlue,
-                              count: imgList.length,
-                              index: pageIndex,
-                            ),
-                            SizedBox(
-                              height: 7,
-                            ),
-                            Align(
-                                alignment: Alignment.bottomLeft,
-                                child: Text(
-                                  "${context.localized.games}",
-                                  style: TextStyle(
-                                      color: AppColors.primaryWhite,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold),
-                                )),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            CategorySlider(),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Align(
-                                alignment: Alignment.bottomLeft,
-                                child: Text(
-                                  "${context.localized.arenda}",
-                                  style: TextStyle(
-                                      color: AppColors.primaryWhite,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold),
-                                )),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            CategoryAr(),
-                            SizedBox(
-                              height: 17,
-                            ),
-                            CallChat(),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Align(
-                                alignment: Alignment.bottomLeft,
-                                child: Text(
-                                  "Сеты",
-                                  style: TextStyle(
-                                      color: AppColors.primaryWhite,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold),
-                                )),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            Wrap(
-                              spacing: 22,
-                              runSpacing: 20,
-                              children:[
-                                 Sets(),
-                                 Sets()
-                              ]),
-                            
-                          ],
+                          ),
                         ),
                       ),
-                    ),
+                    ],
                   ),
-                ],
-              ),
+                );
+                }else{
+                  return Center(child: CircularProgressIndicator(),);
+                }
+                
+              },
             ),
           )
         ],

@@ -82,9 +82,14 @@ class FlutterRouter extends _i31.RootStackRouter {
       );
     },
     AuthConf.name: (routeData) {
+      final args = routeData.argsAs<AuthConfArgs>();
       return _i31.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i6.AuthConf(),
+        child: _i6.AuthConf(
+          key: args.key,
+          smsFor: args.smsFor,
+          phoneNumber: args.phoneNumber,
+        ),
       );
     },
     MainWidget.name: (routeData) {
@@ -494,14 +499,41 @@ class Authorization extends _i31.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i6.AuthConf]
-class AuthConf extends _i31.PageRouteInfo<void> {
-  const AuthConf()
-      : super(
+class AuthConf extends _i31.PageRouteInfo<AuthConfArgs> {
+  AuthConf({
+    _i32.Key? key,
+    required String smsFor,
+    required String phoneNumber,
+  }) : super(
           AuthConf.name,
           path: '/auth-conf',
+          args: AuthConfArgs(
+            key: key,
+            smsFor: smsFor,
+            phoneNumber: phoneNumber,
+          ),
         );
 
   static const String name = 'AuthConf';
+}
+
+class AuthConfArgs {
+  const AuthConfArgs({
+    this.key,
+    required this.smsFor,
+    required this.phoneNumber,
+  });
+
+  final _i32.Key? key;
+
+  final String smsFor;
+
+  final String phoneNumber;
+
+  @override
+  String toString() {
+    return 'AuthConfArgs{key: $key, smsFor: $smsFor, phoneNumber: $phoneNumber}';
+  }
 }
 
 /// generated route for

@@ -26,12 +26,12 @@ class ArDetail extends StatelessWidget {
                 Align(
                   alignment: Alignment.bottomCenter,
                   child: Wrap(spacing: 25, runSpacing: 20, children: [
-                   Sets(),
-                   Sets(),
-                   Sets(),
-                   Sets(),
-                   Sets(),
-                   Sets(),
+                  //  Sets(),
+                  //  Sets(),
+                  //  Sets(),
+                  //  Sets(),
+                  //  Sets(),
+                  //  Sets(),
                   ]),
                 )
               ],

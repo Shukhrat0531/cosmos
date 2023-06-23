@@ -6,8 +6,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import 'dependencies/getIt.dart';
+
 void main() {
-  
+  initGetIt();
   runApp(  
    MyApp()
   );

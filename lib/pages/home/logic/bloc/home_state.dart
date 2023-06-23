@@ -1,4 +1,3 @@
-import 'package:equatable/equatable.dart';
 
 import '../data/model/genre.dart';
 
@@ -12,8 +11,11 @@ class GenresLoading extends GenreState {
 
 class GenresSuccess extends GenreState {
   final List<Genre> genres;
+  final List<Genre> arSliders;
+  final List<SetModel> sets;
 
-  GenresSuccess({required this.genres});
+  GenresSuccess({required this.genres,required this.arSliders,required this.sets});
+
 }
 
 class GenresError extends GenreState {
@@ -21,3 +23,10 @@ class GenresError extends GenreState {
 
   GenresError({required this.message});
 }
+
+class ArSlidesLoading extends GenreState {
+  @override
+  // TODO: implement props
+  List<Object?> get props => [];
+}
+

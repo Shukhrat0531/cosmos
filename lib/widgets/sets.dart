@@ -3,15 +3,19 @@ import 'package:cosmos/const/const.dart';
 import 'package:cosmos/routes/routes.gr.dart';
 import 'package:flutter/material.dart';
 
-class Sets extends StatelessWidget {
-  const Sets({super.key});
+import '../pages/home/logic/data/model/genre.dart';
 
+class Sets extends StatelessWidget {
+  const Sets({super.key, required this.list});
+  final List<SetModel> list;
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.vertical,
-      child:
-           InkWell(
+    return ListView.builder(
+      itemCount: list.length,
+      itemBuilder: (context,index){
+        var item = list[index];
+        return
+        InkWell(
             onTap: () {
               AutoRouter.of(context).push(SetsDetails());
               
@@ -37,7 +41,7 @@ class Sets extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(
                         top: 10, left: 10, right: 10, bottom: 10),
-                    child: Image.asset('assets/images/image.png'),
+                    child: Image.network(item.product.image),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 15, bottom: 3),
@@ -57,7 +61,7 @@ class Sets extends StatelessWidget {
                     child: Align(
                       alignment: Alignment.bottomLeft,
                       child: Text(
-                        'PlayStation 4 Pro',
+                        item.product.name,
                         style: TextStyle(
                             color: AppColors.primaryBottonBlue,
                             fontSize: 13,
@@ -83,7 +87,7 @@ class Sets extends StatelessWidget {
                    ],
                  ),
              ),
-           )
-    );
+           );
+      });
   }
 }

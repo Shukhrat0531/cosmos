@@ -1,23 +1,31 @@
 part of 'auth_bloc.dart';
 
-
 abstract class AuthEvent {}
 
 class RegisterUser extends AuthEvent {
   final String phone;
   final String name;
   final String surname;
-  final String email;
+  final String patronymic;
+  final String year_of_birth;
   final String gender;
-  final bool termsAndCondition;
+  final String? promo_code;
+  final bool term_and_condition;
 
-  RegisterUser(this.phone, this.name, this.surname, this.email, this.gender,
-      this.termsAndCondition);
+  RegisterUser({
+    required this.phone,
+    required  this.name,
+    required  this.surname,
+    required  this.patronymic,
+    required  this.year_of_birth,
+    required this.gender,
+     this.promo_code,
+    required this.term_and_condition});
 }
 
 class LoginUser extends AuthEvent {
   final String phone;
-  LoginUser(this.phone);
+  LoginUser({ required this.phone, });
 }
 
 class SendSms extends AuthEvent {
