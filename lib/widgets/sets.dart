@@ -8,40 +8,48 @@ import '../pages/home/logic/data/model/genre.dart';
 class Sets extends StatelessWidget {
   const Sets({super.key, required this.list});
   final List<SetModel> list;
+
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: list.length,
-      itemBuilder: (context,index){
-        var item = list[index];
-        return
-        InkWell(
+    return GridView.builder(
+        itemCount: list.length,
+        shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          childAspectRatio: 156 / 217,
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10,
+        ),
+        itemBuilder: (context, index) {
+          var item = list[index];
+          return InkWell(
             onTap: () {
               AutoRouter.of(context).push(SetsDetails());
-              
             },
-             child: Container(
-              width: 156,
-              height: 217,
+            child: Container(
               decoration: BoxDecoration(
                   color: AppColors.primaryWhite,
                   borderRadius: BorderRadius.circular(10),
-                  boxShadow:  [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5), // color of shadow
-                    spreadRadius: 5, // extent of shadow, in logical pixels
-                    blurRadius: 7, // blur radius
-                    offset: Offset(0, 3), // changes position of shadow
-                  ),
-                ]
-                  
-                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5), // color of shadow
+                      spreadRadius: 5, // extent of shadow, in logical pixels
+                      blurRadius: 7, // blur radius
+                      offset: Offset(0, 3), // changes position of shadow
+                    ),
+                  ]),
               child: Column(
+                
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        top: 10, left: 10, right: 10, bottom: 10),
-                    child: Image.network(item.product.image),
+                  Container(
+                    width: 169,
+                    height: 158,
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          top: 10, left: 10, right: 10, bottom: 10),
+                      child: Image.network(item.product.image),
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 15, bottom: 3),
@@ -79,15 +87,10 @@ class Sets extends StatelessWidget {
                       ),
                     ),
                   )
-                
-              
-                     
-                     
-             
-                   ],
-                 ),
-             ),
-           );
-      });
+                ],
+              ),
+            ),
+          );
+        });
   }
 }
