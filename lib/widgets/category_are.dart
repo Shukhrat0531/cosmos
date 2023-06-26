@@ -70,7 +70,7 @@ class _CategoryArState extends State<CategoryAr> {
                   items: generels.map((item) {
                     return InkWell(
                       onTap: () {
-                        context.router.push(ArDetail());
+                        context.router.push(ArDetail(id: item.id));
                       },
                       child: Stack(
                         children: [

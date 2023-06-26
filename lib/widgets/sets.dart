@@ -25,7 +25,7 @@ class Sets extends StatelessWidget {
           var item = list[index];
           return InkWell(
             onTap: () {
-              AutoRouter.of(context).push(SetsDetails());
+              AutoRouter.of(context).push(SetsDetails(id:item.product.id));
             },
             child: Container(
               decoration: BoxDecoration(

@@ -1,12 +1,16 @@
 import 'package:cosmos/const/const.dart';
 import 'package:flutter/material.dart';
 
-class GameGard extends StatelessWidget {
-  const GameGard({super.key});
+import '../pages/home/game_detailist/game_model.dart';
 
+class GameGard extends StatelessWidget {
+  final Game game;
+  const GameGard({Key? key, required this.game}) : super(key: key);
+   
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.only(left: 25),
       decoration: BoxDecoration(
           color: AppColors.primaryWhite,
           borderRadius: BorderRadius.circular(10),
@@ -20,15 +24,20 @@ class GameGard extends StatelessWidget {
        ]
       ),
       width: 141,
-      height: 152,
+      height: 192,
       child: Column(
         children: [
-          Image.asset('assets/images/item.png'),
+          
+          Container(
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
+            width: 141,
+            height: 132,
+            child: Image.network(game.image,)),
           SizedBox(
             height: 10,
           ),
           Text(
-            'Elden Ring',
+            game.name,
             style: TextStyle(fontSize: 16),
           )
         ],

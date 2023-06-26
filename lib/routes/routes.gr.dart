@@ -23,10 +23,10 @@ import '../pages/cart/cart.dart' as _i20;
 import '../pages/cart/empty_cart.dart' as _i21;
 import '../pages/favorites/empty_favorites.dart' as _i19;
 import '../pages/favorites/favorites.dart' as _i18;
-import '../pages/home/ar_detail.dart' as _i16;
-import '../pages/home/game_detailist.dart' as _i15;
+import '../pages/home/ar_details/ar_detail.dart' as _i16;
+import '../pages/home/game_detailist/game_detailist.dart' as _i15;
 import '../pages/home/home_page.dart' as _i14;
-import '../pages/home/sets_detailist.dart' as _i17;
+import '../pages/home/sets_details/sets_detailist.dart' as _i17;
 import '../pages/main_page.dart' as _i7;
 import '../pages/menu/log_oute.dart' as _i30;
 import '../pages/menu/menu.dart' as _i24;
@@ -164,22 +164,34 @@ class FlutterRouter extends _i31.RootStackRouter {
         child: const _i14.HomePage(),
       );
     },
-    GameDetailist.name: (routeData) {
+    Slider_details.name: (routeData) {
+      final args = routeData.argsAs<Slider_detailsArgs>();
       return _i31.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i15.GameDetailist(),
+        child: _i15.GameDetailist(
+          key: args.key,
+          id: args.id,
+        ),
       );
     },
     ArDetail.name: (routeData) {
+      final args = routeData.argsAs<ArDetailArgs>();
       return _i31.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i16.ArDetail(),
+        child: _i16.ArDetail(
+          key: args.key,
+          id: args.id,
+        ),
       );
     },
     SetsDetails.name: (routeData) {
+      final args = routeData.argsAs<SetsDetailsArgs>();
       return _i31.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i17.SetsDetails(),
+        child: _i17.SetsDetails(
+          key: args.key,
+          id: args.id,
+        ),
       );
     },
     Favorites.name: (routeData) {
@@ -303,8 +315,8 @@ class FlutterRouter extends _i31.RootStackRouter {
                   parent: HomeRoutes.name,
                 ),
                 _i31.RouteConfig(
-                  GameDetailist.name,
-                  path: 'category',
+                  Slider_details.name,
+                  path: 'game-detailist',
                   parent: HomeRoutes.name,
                 ),
                 _i31.RouteConfig(
@@ -688,38 +700,104 @@ class HomeRoute extends _i31.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i15.GameDetailist]
-class GameDetailist extends _i31.PageRouteInfo<void> {
-  const GameDetailist()
-      : super(
-          GameDetailist.name,
-          path: 'category',
+class Slider_details extends _i31.PageRouteInfo<Slider_detailsArgs> {
+  Slider_details({
+    _i32.Key? key,
+    required int id,
+  }) : super(
+          Slider_details.name,
+          path: 'game-detailist',
+          args: Slider_detailsArgs(
+            key: key,
+            id: id,
+          ),
         );
 
-  static const String name = 'GameDetailist';
+  static const String name = 'Slider_details';
+}
+
+class Slider_detailsArgs {
+  const Slider_detailsArgs({
+    this.key,
+    required this.id,
+  });
+
+  final _i32.Key? key;
+
+  final int id;
+
+  @override
+  String toString() {
+    return 'Slider_detailsArgs{key: $key, id: $id}';
+  }
 }
 
 /// generated route for
 /// [_i16.ArDetail]
-class ArDetail extends _i31.PageRouteInfo<void> {
-  const ArDetail()
-      : super(
+class ArDetail extends _i31.PageRouteInfo<ArDetailArgs> {
+  ArDetail({
+    _i32.Key? key,
+    required int id,
+  }) : super(
           ArDetail.name,
           path: 'ar_detail',
+          args: ArDetailArgs(
+            key: key,
+            id: id,
+          ),
         );
 
   static const String name = 'ArDetail';
 }
 
+class ArDetailArgs {
+  const ArDetailArgs({
+    this.key,
+    required this.id,
+  });
+
+  final _i32.Key? key;
+
+  final int id;
+
+  @override
+  String toString() {
+    return 'ArDetailArgs{key: $key, id: $id}';
+  }
+}
+
 /// generated route for
 /// [_i17.SetsDetails]
-class SetsDetails extends _i31.PageRouteInfo<void> {
-  const SetsDetails()
-      : super(
+class SetsDetails extends _i31.PageRouteInfo<SetsDetailsArgs> {
+  SetsDetails({
+    _i32.Key? key,
+    required int id,
+  }) : super(
           SetsDetails.name,
           path: 'sets_detail',
+          args: SetsDetailsArgs(
+            key: key,
+            id: id,
+          ),
         );
 
   static const String name = 'SetsDetails';
+}
+
+class SetsDetailsArgs {
+  const SetsDetailsArgs({
+    this.key,
+    required this.id,
+  });
+
+  final _i32.Key? key;
+
+  final int id;
+
+  @override
+  String toString() {
+    return 'SetsDetailsArgs{key: $key, id: $id}';
+  }
 }
 
 /// generated route for

@@ -13,7 +13,7 @@ class FavCard extends StatelessWidget {
         scrollDirection: Axis.vertical,
         child: InkWell(
           onTap: () {
-            AutoRouter.of(context).push(SetsDetails());
+            // AutoRouter.of(context).push(SetsDetails(id: ));
           },
           child: Container(
             width: 156,

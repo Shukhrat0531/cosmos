@@ -4,9 +4,9 @@ import 'package:cosmos/pages/cart/cart.dart';
 import 'package:cosmos/pages/favorites/empty_favorites.dart';
 import 'package:cosmos/pages/favorites/favorites.dart';
 // import 'package:cosmos/pages/favorites/favorites.dart';
-import 'package:cosmos/pages/home/ar_detail.dart';
-import 'package:cosmos/pages/home/game_detailist.dart';
-import 'package:cosmos/pages/home/sets_detailist.dart';
+import 'package:cosmos/pages/home/ar_details/ar_detail.dart';
+import 'package:cosmos/pages/home/game_detailist/game_detailist.dart';
+import 'package:cosmos/pages/home/sets_details/sets_detailist.dart';
 import 'package:cosmos/pages/main_page.dart';
 import 'package:cosmos/pages/menu/log_oute.dart';
 import 'package:cosmos/pages/menu/menu.dart';
@@ -44,7 +44,7 @@ import '../pages/splash_screen.dart';
     AutoRoute(page: MainWidget, children: [
       AutoRoute(page: EmptyRouterPage, name: 'HomeRoutes', children: [
         AutoRoute(page: HomePage, path: ''),
-        AutoRoute(page: GameDetailist, path: 'category'),
+        AutoRoute(page: GameDetailist,name: 'slider_details'),
         AutoRoute(page: ArDetail, path: 'ar_detail'),
         AutoRoute(page: SetsDetails, path: 'sets_detail'),
       ]),
