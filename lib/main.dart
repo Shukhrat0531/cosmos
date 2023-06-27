@@ -9,6 +9,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'dependencies/getIt.dart';
 
 void main() {
+   WidgetsFlutterBinding.ensureInitialized();
   initGetIt();
   runApp(  
    MyApp()

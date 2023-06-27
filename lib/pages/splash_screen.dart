@@ -5,6 +5,8 @@ import 'package:cosmos/locals.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../routes/routes.gr.dart';
+
 
 Widget slideContent(String imagePath, String slideTitle) {
   return Padding(
@@ -95,7 +97,8 @@ class _SplashScreenState extends State<SplashScreen> {
                       color: AppColors.primaryBottonBlue,fontSize: 18)),
             ), // Добавьте стиль текста, чтобы поменять цвет
             onPressed: () {
-              context.router.pushNamed('/Authorization');
+              context.router.pushNamed('/main-widget');
+             
             },
           ),
         ],

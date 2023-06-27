@@ -2,12 +2,15 @@ import 'package:cosmos/pages/authentiaction/logic/data/repository/repositry.dart
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../services/prefens_services.dart';
+
 part 'auth_event.dart';
 part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final AuthReposotory reposotory;
-  AuthBloc(this.reposotory) : super(AuthInitial()) {
+  final PreferencesService prefs;
+  AuthBloc(this.reposotory, this.prefs) : super(AuthInitial()) {
     on<RegisterUser>((event, emit) async {
       emit(RegisterLoading());
       try {
@@ -38,7 +41,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         if (token == null) {
           emit(SmsFailed(null));
         } else {
+          prefs.setTokenKey(token);
           emit(SmsSuccess());
+          
         }
       } on DioError catch (e) {
         print(e);

@@ -9,7 +9,7 @@ import '../../../widgets/customer_button.dart';
 import '../../../widgets/day.dart';
 
 class SetsDetails extends StatelessWidget {
-  const SetsDetails({super.key,  required this.id});
+  const SetsDetails({super.key, required this.id});
   final int id;
   @override
   Widget build(BuildContext context) {
@@ -48,9 +48,7 @@ class SetsDetails extends StatelessWidget {
                   width: 255,
                 ),
                 IconButton(
-                  onPressed: () {
-
-                  },
+                  onPressed: () {},
                   icon: Icon(
                     FontAwesomeIcons.heart,
                     color: Colors.grey,
@@ -63,9 +61,9 @@ class SetsDetails extends StatelessWidget {
             ),
             body: BlocBuilder<ProductBloc, ProductState>(
               builder: (context, state) {
-                if (state is ProductFailure){
+                if (state is ProductFailure) {
                   return Text("error");
-                }else if (state is ProductSecces){
+                } else if (state is ProductSecces) {
                   return SingleChildScrollView(
                     child: Column(
                       children: [
@@ -88,7 +86,7 @@ class SetsDetails extends StatelessWidget {
                                       // if(state.product.images.isNotempty){
                                       //   state.product.images[0]
                                       // }
-                                       state.product.images[0],
+                                      state.product.images[0],
                                       fit: BoxFit.cover,
                                     )),
                               ),
@@ -111,8 +109,94 @@ class SetsDetails extends StatelessWidget {
                         SizedBox(
                           height: 40,
                         ),
-                        Day(),
-                       
+                        Column(
+                          children: [
+                            Container(
+                              height: 30,
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.only(left: 15, right: 15),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "1 сутки - 5 000 ₸",
+                                      style: TextStyle(
+                                          color: AppColors.primaryWhite,
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                    ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        primary: AppColors.primaryWhite,
+                                        onPrimary: AppColors.primaryBottonBlue,
+                                        minimumSize: Size(112, 25),
+                                      ),
+                                      onPressed: () {},
+                                      child: Text("249 Б"),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Container(
+                              height: 30,
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.only(left: 15, right: 15),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "2 сутки - 6 000 ₸",
+                                      style: TextStyle(
+                                          color: AppColors.primaryWhite,
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                    ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        primary: AppColors.primaryWhite,
+                                        onPrimary: AppColors.primaryBottonBlue,
+                                        minimumSize: Size(112, 25),
+                                      ),
+                                      onPressed: () {},
+                                      child: Text("349 Б"),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Container(
+                              height: 30,
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.only(left: 15, right: 15),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "3 сутки - 7 000 ₸",
+                                      style: TextStyle(
+                                          color: AppColors.primaryWhite,
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                    ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        primary: AppColors.primaryWhite,
+                                        onPrimary: AppColors.primaryBottonBlue,
+                                        minimumSize: Size(112, 25),
+                                      ),
+                                      onPressed: () {},
+                                      child: Text("449 Б"),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
                         SizedBox(
                           height: 10,
                         ),
@@ -133,8 +217,7 @@ class SetsDetails extends StatelessWidget {
                           padding: EdgeInsets.only(left: 15, right: 15),
                           child: Align(
                               alignment: Alignment.bottomLeft,
-                              child: Text(
-                                  state.product.description,
+                              child: Text(state.product.description,
                                   style: TextStyle(
                                       color: AppColors.primaryWhite,
                                       fontSize: 14,
@@ -146,10 +229,11 @@ class SetsDetails extends StatelessWidget {
                       ],
                     ),
                   );
-                }else{
-                  return Center(child: CircularProgressIndicator(),);
+                } else {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
                 }
-                
               },
             ),
             floatingActionButton: Padding(

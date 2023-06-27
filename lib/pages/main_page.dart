@@ -3,7 +3,11 @@ import 'package:cosmos/const/const.dart';
 import 'package:cosmos/routes/routes.gr.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+
+import '../dependencies/getIt.dart';
+import 'menu/logic/bloc/menu_bloc.dart';
 
 
 class MainWidget extends StatefulWidget {
@@ -25,7 +29,21 @@ class _MainWidgetState extends State<MainWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return AutoTabsRouter(
+    return
+     MultiBlocProvider(
+      providers: [
+       
+        BlocProvider(
+          create: (context) => getIt<MenuBloc>()..add(GetMenuInfo()),
+        ),
+        // BlocProvider(
+        //   create: (context) => getIt<HelpBloc>()..add(GetHelpInfo()),
+        // ),
+        // BlocProvider(
+        //   create: (context) => getIt<CartBloc>()..add(GetCartInfo()),
+        // )
+      ],
+      child:AutoTabsRouter(
       routes: const [
         HomeRoutes(),
         Favorite(),
@@ -122,7 +140,7 @@ class _MainWidgetState extends State<MainWidget> {
                   ])
                   );
         
-      },
+      },)
     );
   }
 }
