@@ -1,9 +1,11 @@
+import 'package:cosmos/pages/menu/logic/bloc/menu_models.dart';
 import 'package:flutter/material.dart';
 
 import '../../const/const.dart';
 
 class MenuBonus extends StatelessWidget {
-  const MenuBonus({super.key});
+  const MenuBonus({super.key, required this.helpmodels});
+  final List<HelpModel> helpmodels;
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +50,7 @@ class MenuBonus extends StatelessWidget {
           
           children: [
             SizedBox(height: 20,),
+           
             Container(
               decoration: BoxDecoration(
                   color: Color(0xFF3E71D9),

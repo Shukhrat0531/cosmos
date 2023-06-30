@@ -28,6 +28,8 @@ class _AuthConfState extends State<AuthConf> {
     futureWait = Future.delayed(Duration(seconds: 59)); // задержка в 59 секунд
   }
 
+  String errorMessage = "";
+
   @override
   Widget build(BuildContext context) {
     final defaultPinTheme = PinTheme(
@@ -100,58 +102,29 @@ class _AuthConfState extends State<AuthConf> {
               SizedBox(
                 height: 15,
               ),
-              // FutureBuilder(
-              //   future: futureWait,
-              //   builder: (context, snapshot) {
-              //     if (snapshot.connectionState == ConnectionState.waiting) {
-              //       // Возвращает счетчик времени в формате mm:ss
-              //       return CountdownTimer(
-              //         endTime:
-              //             DateTime.now().millisecondsSinceEpoch + 1000 * 59,
-              //         widgetBuilder: (_, CurrentRemainingTime? time) {
-              //           if (time == null) return Container();
-              //           return Text(
-              //               'Повторно запросить SMS-код\n можно через ${time.sec} секунд');
-              //         },
-              //       );
-              //     } else {
-              //       // Перенаправление на другую страницу после таймера
-              //       WidgetsBinding.instance.addPostFrameCallback((_) {
-              //         context.router.pushNamed('/Confirmation');
-
-              //         ;
-              //       });
-              //       return Container();
-              //     }
-              //   },
-              // ),
               SizedBox(
                 height: 40,
               ),
-              BlocConsumer<AuthBloc, AuthState>(
-                listener: (context, state) {
-                  if (state is SmsFailed) {
-                      setState(() {
-                         state.message;
-                      });
-                    } else if (state is SmsSuccess) {
-                      context.router.pushNamed('/main-widget');
-                    }
-                  },
-                
-                builder: (context, state){
-                  if (state is SmsLoading) {
-                  
-                   return ElevatedButton(
+              BlocConsumer<AuthBloc, AuthState>(listener: (context, state) {
+                if (state is SmsFailed) {
+                  setState(() {
+                    errorMessage = state.message.toString();
+                    print(state.message);
+                  });
+                  Text(state.message.toString());
+                } else if (state is SmsSuccess) {
+                  context.router.pushNamed('/main-widget');
+                }
+              }, builder: (context, state) {
+                if (state is SmsLoading) {
+                  return ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       primary: AppColors.primaryWhite,
                       minimumSize: Size(325, 60),
                     ),
                     onPressed: () {
-                      context.read<AuthBloc>().add(SendSms(
-                        widget.phoneNumber,
-                         _pinCode,
-                        widget.smsFor as String));
+                      context.read<AuthBloc>().add(SendSms(widget.phoneNumber,
+                          _pinCode, widget.smsFor as String));
                     },
                     child: Text(
                       "${context.localized.signIn}",
@@ -161,17 +134,15 @@ class _AuthConfState extends State<AuthConf> {
                           color: AppColors.primaryBlack),
                     ),
                   );
-                  
                 }
-                return
-                ElevatedButton(
+                return ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     primary: AppColors.primaryWhite,
                     minimumSize: Size(325, 60),
                   ),
                   onPressed: () {
-                    context.read<AuthBloc>().add(SendSms(
-                        widget.phoneNumber, _pinCode, widget.smsFor ));
+                    context.read<AuthBloc>().add(
+                        SendSms(widget.phoneNumber, _pinCode, widget.smsFor));
                   },
                   child: Text(
                     "${context.localized.signIn}",
@@ -181,12 +152,16 @@ class _AuthConfState extends State<AuthConf> {
                         color: AppColors.primaryBlack),
                   ),
                 );
-                
-                }
-              ),
+              }),
               SizedBox(
                 height: 25,
               ),
+              Text(
+                errorMessage,
+                style: TextStyle(
+                  color: Colors.red, // Цвет текста ошибки
+                ),
+              )
             ],
           ),
         ),

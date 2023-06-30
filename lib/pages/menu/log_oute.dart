@@ -90,7 +90,7 @@ class MenuLogOut extends StatelessWidget {
             ),
             InkWell(
               onTap: () {
-                AutoRouter.of(context).push(MenuHelp());
+                // AutoRouter.of(context).push(MenuHelp());
               },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -14,7 +14,7 @@ class NetworkService {
         'Accept': 'application/json',
         'Authorization': 'Bearer ${prefs.tokenKey}',
         'Content-Language': prefs.languageCode,
-        'City': prefs.city?.id,
+        'City': 1,
       });
 
   

@@ -53,7 +53,7 @@ class _HomePageState extends State<HomePage> {
             body: BlocBuilder<GenreBloc, GenreState>(
               builder: (context, state) {
                 if( state is GenresError){
-                  return Text("error sets");
+                  return Center(child: Text(state.message ?? ' Error occured'));
                 }else if( state is GenresSuccess){
                   return SingleChildScrollView(
                   scrollDirection: Axis.vertical,

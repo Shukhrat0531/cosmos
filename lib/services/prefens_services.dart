@@ -14,14 +14,18 @@ class PreferencesService {
   static const String tokenKeyKey = 'tokenKey';
   static const String cityKey = 'city';
   static const String languageCodeKey = 'languageCode';
+  static const String userIdKey = 'userId';
+
 
   String _tokenKey = '';
   CityModel? _city;
   String _languageCode = '';
+  int? _userId;
 
   String get tokenKey => _tokenKey;
   CityModel? get city => _city;
   String get languageCode => _languageCode;
+  int? get userId => _userId;
 
   PreferencesService() {
 
@@ -39,6 +43,18 @@ class PreferencesService {
     }
 
     _languageCode = _prefs.getString(languageCodeKey) ?? '';
+  }
+  void setUser(String tokenKey, int userId) {
+    _tokenKey = tokenKey;
+    _prefs.setString(tokenKeyKey, tokenKey);
+
+    _userId = userId;
+    _prefs.setInt(userIdKey, userId);
+  }
+
+  void deleteUser() {
+    _prefs.remove(userIdKey);
+    _prefs.remove(tokenKey);
   }
 
   void setTokenKey(String value) {

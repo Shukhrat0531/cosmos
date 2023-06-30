@@ -19,7 +19,7 @@ class GenreBloc extends Bloc<GenreEvent, GenreState> {
         List<SetModel> sets = await _sliderRepository.getSets();
         emit(GenresSuccess(genres: result, arSliders: arSlider,sets: sets));
       } on DioException catch (e) {
-        print('ERROR: $e'); // выводит больше информации об ошибке
+        print('ERROR:  ${e.response}'); // выводит больше информации об ошибке
         emit(GenresError(message: e.message));
       }
       ;

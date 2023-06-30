@@ -29,6 +29,7 @@ import '../pages/home/home_page.dart' as _i14;
 import '../pages/home/sets_details/sets_detailist.dart' as _i17;
 import '../pages/main_page.dart' as _i7;
 import '../pages/menu/log_oute.dart' as _i30;
+import '../pages/menu/logic/bloc/menu_models.dart' as _i33;
 import '../pages/menu/menu.dart' as _i24;
 import '../pages/menu/menu_bonus.dart' as _i28;
 import '../pages/menu/menu_help.dart' as _i29;
@@ -255,15 +256,23 @@ class FlutterRouter extends _i31.RootStackRouter {
       );
     },
     MenuBonus.name: (routeData) {
+      final args = routeData.argsAs<MenuBonusArgs>();
       return _i31.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i28.MenuBonus(),
+        child: _i28.MenuBonus(
+          key: args.key,
+          helpmodels: args.helpmodels,
+        ),
       );
     },
     MenuHelp.name: (routeData) {
+      final args = routeData.argsAs<MenuHelpArgs>();
       return _i31.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: _i29.MenuHelp(),
+        child: _i29.MenuHelp(
+          key: args.key,
+          helpmodels: args.helpmodels,
+        ),
       );
     },
     MenuLogOut.name: (routeData) {
@@ -922,26 +931,70 @@ class MenuOrderEmpty extends _i31.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i28.MenuBonus]
-class MenuBonus extends _i31.PageRouteInfo<void> {
-  const MenuBonus()
-      : super(
+class MenuBonus extends _i31.PageRouteInfo<MenuBonusArgs> {
+  MenuBonus({
+    _i32.Key? key,
+    required List<_i33.HelpModel> helpmodels,
+  }) : super(
           MenuBonus.name,
           path: 'menues_bonus',
+          args: MenuBonusArgs(
+            key: key,
+            helpmodels: helpmodels,
+          ),
         );
 
   static const String name = 'MenuBonus';
 }
 
+class MenuBonusArgs {
+  const MenuBonusArgs({
+    this.key,
+    required this.helpmodels,
+  });
+
+  final _i32.Key? key;
+
+  final List<_i33.HelpModel> helpmodels;
+
+  @override
+  String toString() {
+    return 'MenuBonusArgs{key: $key, helpmodels: $helpmodels}';
+  }
+}
+
 /// generated route for
 /// [_i29.MenuHelp]
-class MenuHelp extends _i31.PageRouteInfo<void> {
-  const MenuHelp()
-      : super(
+class MenuHelp extends _i31.PageRouteInfo<MenuHelpArgs> {
+  MenuHelp({
+    _i32.Key? key,
+    required List<_i33.HelpModel>? helpmodels,
+  }) : super(
           MenuHelp.name,
           path: 'menues_help',
+          args: MenuHelpArgs(
+            key: key,
+            helpmodels: helpmodels,
+          ),
         );
 
   static const String name = 'MenuHelp';
+}
+
+class MenuHelpArgs {
+  const MenuHelpArgs({
+    this.key,
+    required this.helpmodels,
+  });
+
+  final _i32.Key? key;
+
+  final List<_i33.HelpModel>? helpmodels;
+
+  @override
+  String toString() {
+    return 'MenuHelpArgs{key: $key, helpmodels: $helpmodels}';
+  }
 }
 
 /// generated route for

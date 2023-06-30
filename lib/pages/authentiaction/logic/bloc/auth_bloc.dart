@@ -28,6 +28,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         await reposotory.loginRequest(event.phone);
         emit(LoginSuccess());
       } on DioError catch (e) {
+        print('${e.response}');
         emit(LoginFailed(e.message));
       }
     });
@@ -46,7 +47,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           
         }
       } on DioError catch (e) {
-        print(e);
+        emit(SmsFailed( e.message));
       }
     });
   }

@@ -20,6 +20,7 @@ class CategorySlider extends StatefulWidget {
 class _CategorySliderState extends State<CategorySlider> {
   int pageIndex = 0;
 
+
   
 
   @override

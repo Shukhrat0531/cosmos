@@ -24,6 +24,7 @@ class Menu extends StatelessWidget {
           if(state is MenuFailure){
             return Text("is a failure");
           }else if(state is MenuSuccess){
+            final people = state.profile;
             return Scaffold(
               backgroundColor: Colors.transparent,
               appBar: AppBar(
@@ -59,12 +60,12 @@ class Menu extends StatelessWidget {
                       Column(
                         children: [
                           Text(
-                            "Амир Капаров",
+                            "${people.name} ${people.surname}",
                             style: TextStyle(
                                 fontSize: 16, color: AppColors.primaryWhite),
                           ),
                           Text(
-                            "+7 701 324 2232",
+                            "${people.phone}",
                             style: TextStyle(
                                 color: AppColors.primaryWhite,
                                 fontWeight: FontWeight.w400),
@@ -112,7 +113,7 @@ class Menu extends StatelessWidget {
                   ),
                   InkWell(
                     onTap: () {
-                      AutoRouter.of(context).push(MenuBonus());
+                      AutoRouter.of(context).push(MenuBonus(helpmodels: state.helpList));
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -217,7 +218,7 @@ class Menu extends StatelessWidget {
                   ),
                   InkWell(
                     onTap: () {
-                      AutoRouter.of(context).push(MenuHelp());
+                      AutoRouter.of(context).push(MenuHelp(helpmodels: state.helpList));
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,

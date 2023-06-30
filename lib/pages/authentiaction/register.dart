@@ -27,6 +27,7 @@ class _AuthorizationState extends State<Authorization> {
 
   final TextEditingController _phoneNumber =
       MaskedTextController(mask: '+7 (000) 000-00-00', text: '7');
+    String errorMessage = "";
 
   @override
   Widget build(BuildContext context) {
@@ -112,25 +113,10 @@ class _AuthorizationState extends State<Authorization> {
                     if( state is LoginSuccess){
                       context.router.push(AuthConf(smsFor: "1", phoneNumber: _phoneNumber.text));
                     }else if (state is LoginFailed){
-                      showDialog(
-                          context: context,
-                          builder: (ctx) => AlertDialog(
-                            title: const Text(""),
-                            content: const Text("Не коректно"),
-                            actions: <Widget>[
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.of(ctx).pop();
-                                },
-                                child: Container(
-                                  color: Colors.green,
-                                  padding: const EdgeInsets.all(14),
-                                  child: const Text("okay"),
-                                ),
-                              ),
-                            ],
-                          ),
-                        );
+                      setState(() {
+                          errorMessage = state.message.toString();
+                          print(state.message);
+                        });
                     }
                         
                     
@@ -143,10 +129,10 @@ class _AuthorizationState extends State<Authorization> {
                               .primaryWhite, // Изменяем цвет в соответствии с состоянием
                           minimumSize: Size(325, 60),
                         ),
-                        onPressed: () => context.router.push(AuthConf(smsFor: '1', phoneNumber: _phoneNumber.text)),
-                        // onPressed: () => context.read<AuthBloc>().add(LoginUser(
-                        //   phone:_phoneNumber.text
-                        // )),
+                        // onPressed: () => context.router.push(AuthConf(smsFor: '1', phoneNumber: _phoneNumber.text)),
+                        onPressed: () => context.read<AuthBloc>().add(LoginUser(
+                          phone:_phoneNumber.text
+                        )),
                         child: Text(
                           "${context.localized.next}",
                           style: TextStyle(
@@ -157,6 +143,8 @@ class _AuthorizationState extends State<Authorization> {
                       );
                     },
                   ),
+                  SizedBox(height: 25,),
+                  Text(errorMessage,style: TextStyle(color: Colors.red),)
                 ],
               ),
             ),
