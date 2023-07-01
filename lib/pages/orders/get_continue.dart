@@ -58,7 +58,8 @@ class _GetContinueState extends State<GetContinue> {
           SizedBox(
             height: 30,
           ),
-          CartItem(),
+          
+          // CartItem(),
           Padding(
             padding: const EdgeInsets.only(left: 25),
             child: Text(

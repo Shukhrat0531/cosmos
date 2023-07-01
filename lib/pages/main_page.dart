@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../dependencies/getIt.dart';
+import 'cart/logic/cart_bloc.dart';
 import 'menu/logic/bloc/menu_bloc.dart';
 
 
@@ -39,9 +40,9 @@ class _MainWidgetState extends State<MainWidget> {
         // BlocProvider(
         //   create: (context) => getIt<HelpBloc>()..add(GetHelpInfo()),
         // ),
-        // BlocProvider(
-        //   create: (context) => getIt<CartBloc>()..add(GetCartInfo()),
-        // )
+        BlocProvider(
+          create: (context) => getIt<CartBloc>()..add(GetCartInfo()),
+        )
       ],
       child:AutoTabsRouter(
       routes: const [

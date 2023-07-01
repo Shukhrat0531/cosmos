@@ -2,6 +2,7 @@ import 'package:cosmos/pages/authentiaction/logic/data/repository/repositry.dart
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../services/error_massege.dart';
 import '../../../../services/prefens_services.dart';
 
 part 'auth_event.dart';
@@ -29,7 +30,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         emit(LoginSuccess());
       } on DioError catch (e) {
         print('${e.response}');
-        emit(LoginFailed(e.message));
+        emit(LoginFailed(getErrorMessage(e)));
       }
     });
 

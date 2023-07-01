@@ -59,7 +59,7 @@ class _GetOrderState extends State<GetOrder> {
           SizedBox(
             height: 30,
           ),
-          CartItem(),
+          // CartItem(),
           Padding(
             padding: const EdgeInsets.only(left: 25),
             child: Text(

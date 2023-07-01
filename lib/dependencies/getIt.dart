@@ -13,6 +13,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../pages/authentiaction/logic/bloc/auth_bloc.dart';
 import '../pages/authentiaction/logic/data/datasource/datasource.dart';
 import '../pages/authentiaction/logic/data/repository/repositry.dart';
+import '../pages/cart/logic/cart_bloc.dart';
+import '../pages/cart/logic/cart_repository.dart';
 import '../pages/home/game_detailist/game_repository.dart';
 import '../pages/home/sets_details/sets_bloc.dart';
 import '../pages/home/sets_details/sets_repository.dart';
@@ -20,8 +22,7 @@ import '../pages/menu/logic/bloc/menu_repository.dart';
 
 final getIt = GetIt.instance;
 void initGetIt() async {
-  
-  getIt.registerFactory<AuthBloc>(() => AuthBloc(getIt(),getIt()));
+  getIt.registerFactory<AuthBloc>(() => AuthBloc(getIt(), getIt()));
 
   getIt
       .registerLazySingleton<AuthReposotory>(() => AuthReposotoryImpl(getIt()));
@@ -48,7 +49,11 @@ void initGetIt() async {
 
   getIt.registerLazySingleton<NetworkService>(() => NetworkService(getIt()));
 
-    getIt.registerLazySingleton<PreferencesService>(() => PreferencesService());
-    final pref = await SharedPreferences.getInstance();
-    getIt.registerLazySingleton<SharedPreferences>(() => pref);
+  getIt.registerLazySingleton<PreferencesService>(() => PreferencesService());
+  final pref = await SharedPreferences.getInstance();
+  getIt.registerLazySingleton<SharedPreferences>(() => pref);
+
+  getIt.registerFactory<CartBloc>(() => CartBloc(getIt()));
+
+  getIt.registerLazySingleton<CartRepository>(() => CartRepository(getIt()));
 }

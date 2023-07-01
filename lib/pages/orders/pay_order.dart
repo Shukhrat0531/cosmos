@@ -59,7 +59,7 @@ class _PayOrderState extends State<PayOrder> {
             SizedBox(
               height: 30,
             ),
-            CartItem(),
+            // CartItem(),
             SizedBox(
               height: 10,
             ),

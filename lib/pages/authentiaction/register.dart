@@ -129,10 +129,10 @@ class _AuthorizationState extends State<Authorization> {
                               .primaryWhite, // Изменяем цвет в соответствии с состоянием
                           minimumSize: Size(325, 60),
                         ),
-                        // onPressed: () => context.router.push(AuthConf(smsFor: '1', phoneNumber: _phoneNumber.text)),
-                        onPressed: () => context.read<AuthBloc>().add(LoginUser(
-                          phone:_phoneNumber.text
-                        )),
+                        onPressed: () => context.router.push(AuthConf(smsFor: '1', phoneNumber: _phoneNumber.text)),
+                        // onPressed: () => context.read<AuthBloc>().add(LoginUser(
+                        //   phone:_phoneNumber.text
+                        // )),
                         child: Text(
                           "${context.localized.next}",
                           style: TextStyle(
