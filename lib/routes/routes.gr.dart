@@ -29,7 +29,7 @@ import '../pages/home/home_page.dart' as _i14;
 import '../pages/home/sets_details/sets_detailist.dart' as _i17;
 import '../pages/main_page.dart' as _i7;
 import '../pages/menu/log_oute.dart' as _i30;
-import '../pages/menu/logic/bloc/menu_models.dart' as _i33;
+import '../pages/menu/logic/bloc/menu_models.dart' as _i34;
 import '../pages/menu/menu.dart' as _i24;
 import '../pages/menu/menu_bonus.dart' as _i28;
 import '../pages/menu/menu_help.dart' as _i29;
@@ -38,6 +38,7 @@ import '../pages/menu/menu_order.dart' as _i25;
 import '../pages/menu/menu_order_empty.dart' as _i27;
 import '../pages/notification/empty_natification.dart' as _i23;
 import '../pages/notification/natification.dart' as _i22;
+import '../pages/orders/bloc/ored_model.dart' as _i33;
 import '../pages/orders/faild_order.dart' as _i11;
 import '../pages/orders/get_continue.dart' as _i12;
 import '../pages/orders/get_order.dart' as _i8;
@@ -100,9 +101,13 @@ class FlutterRouter extends _i31.RootStackRouter {
       );
     },
     GetOrder.name: (routeData) {
+      final args = routeData.argsAs<GetOrderArgs>();
       return _i31.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i8.GetOrder(),
+        child: _i8.GetOrder(
+          key: args.key,
+          item: args.item,
+        ),
       );
     },
     PayOrder.name: (routeData) {
@@ -572,14 +577,36 @@ class MainWidget extends _i31.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i8.GetOrder]
-class GetOrder extends _i31.PageRouteInfo<void> {
-  const GetOrder()
-      : super(
+class GetOrder extends _i31.PageRouteInfo<GetOrderArgs> {
+  GetOrder({
+    _i32.Key? key,
+    required List<_i33.CreateOrderProductModel> item,
+  }) : super(
           GetOrder.name,
           path: '/get-order',
+          args: GetOrderArgs(
+            key: key,
+            item: item,
+          ),
         );
 
   static const String name = 'GetOrder';
+}
+
+class GetOrderArgs {
+  const GetOrderArgs({
+    this.key,
+    required this.item,
+  });
+
+  final _i32.Key? key;
+
+  final List<_i33.CreateOrderProductModel> item;
+
+  @override
+  String toString() {
+    return 'GetOrderArgs{key: $key, item: $item}';
+  }
 }
 
 /// generated route for
@@ -934,7 +961,7 @@ class MenuOrderEmpty extends _i31.PageRouteInfo<void> {
 class MenuBonus extends _i31.PageRouteInfo<MenuBonusArgs> {
   MenuBonus({
     _i32.Key? key,
-    required List<_i33.HelpModel> helpmodels,
+    required List<_i34.HelpModel> helpmodels,
   }) : super(
           MenuBonus.name,
           path: 'menues_bonus',
@@ -955,7 +982,7 @@ class MenuBonusArgs {
 
   final _i32.Key? key;
 
-  final List<_i33.HelpModel> helpmodels;
+  final List<_i34.HelpModel> helpmodels;
 
   @override
   String toString() {
@@ -968,7 +995,7 @@ class MenuBonusArgs {
 class MenuHelp extends _i31.PageRouteInfo<MenuHelpArgs> {
   MenuHelp({
     _i32.Key? key,
-    required List<_i33.HelpModel>? helpmodels,
+    required List<_i34.HelpModel>? helpmodels,
   }) : super(
           MenuHelp.name,
           path: 'menues_help',
@@ -989,7 +1016,7 @@ class MenuHelpArgs {
 
   final _i32.Key? key;
 
-  final List<_i33.HelpModel>? helpmodels;
+  final List<_i34.HelpModel>? helpmodels;
 
   @override
   String toString() {

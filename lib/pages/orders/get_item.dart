@@ -1,21 +1,22 @@
+
+
+
+
+
+import 'package:cosmos/pages/cart/logic/cart_bloc.dart';
+import 'package:cosmos/pages/orders/bloc/ored_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../const/const.dart';
-import 'logic/cart_bloc.dart';
-import 'logic/cart_item_model.dart';
 
-class CartItem extends StatelessWidget {
-  final CartItemModel item;
-  final VoidCallback onPressed;
-  
+class GetCartItem extends StatelessWidget {
+  final CreateOrderProductModel item;
 
-  const CartItem({super.key, required this.item, required this.onPressed});
+  const GetCartItem({super.key, required this.item,});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CartBloc, CartState>(
-      builder: (context, state) {
+     
         return Padding(
           padding: const EdgeInsets.only(left: 20, bottom: 20),
           child: Container(
@@ -27,7 +28,7 @@ class CartItem extends StatelessWidget {
                     decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(15)),
-                    child: Image.network(item.cover)),
+                    child: Image.network(item.image)),
                 SizedBox(
                   width: 15,
                 ),
@@ -67,13 +68,7 @@ class CartItem extends StatelessWidget {
                         SizedBox(
                           width: 15,
                         ),
-                        TextButton(
-                          onPressed:onPressed,
-                          child: Text(
-                            "Удалить",
-                            style: TextStyle(color: AppColors.primaryWhite),
-                          ),
-                        ),
+                       
                       ],
                     )
                   ],
@@ -81,8 +76,7 @@ class CartItem extends StatelessWidget {
               ],
             ),
           ),
-        );
-      },
+       
     );
   }
 }

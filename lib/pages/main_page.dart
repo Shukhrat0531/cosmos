@@ -10,7 +10,6 @@ import '../dependencies/getIt.dart';
 import 'cart/logic/cart_bloc.dart';
 import 'menu/logic/bloc/menu_bloc.dart';
 
-
 class MainWidget extends StatefulWidget {
   const MainWidget({super.key});
 
@@ -30,119 +29,124 @@ class _MainWidgetState extends State<MainWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return
-     MultiBlocProvider(
-      providers: [
-       
-        BlocProvider(
-          create: (context) => getIt<MenuBloc>()..add(GetMenuInfo()),
-        ),
-        // BlocProvider(
-        //   create: (context) => getIt<HelpBloc>()..add(GetHelpInfo()),
-        // ),
-        BlocProvider(
-          create: (context) => getIt<CartBloc>()..add(GetCartInfo()),
-        )
-      ],
-      child:AutoTabsRouter(
-      routes: const [
-        HomeRoutes(),
-        Favorite(),
-        Carts(),
-        Natifications(),
-        Menues(),
-      ],
-      builder: (context, child, animation) {
-        final tabsRouter = AutoTabsRouter.of(context);
-        final currentIndex =
-            AutoTabsRouter.of(context, watch: true).activeIndex;
-        return  Scaffold(
-              body: FadeTransition(opacity: animation, child: child),
-              bottomNavigationBar: BottomNavigationBar(
-                  type: BottomNavigationBarType.fixed,
-                  currentIndex: tabsRouter.activeIndex,
-                  onTap: (index) async => index == currentIndex
-                      ? await _canPopSelf(tabsRouter)
-                      : tabsRouter.setActiveIndex(index),
-                  selectedFontSize: 12,
-                  unselectedFontSize: 12,
-                  backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-                  showSelectedLabels: false,
-                  showUnselectedLabels: false,
-                  items: [
-                    BottomNavigationBarItem(
-                      icon: ColorFiltered(
+    return MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => getIt<MenuBloc>()..add(GetMenuInfo()),
+          ),
+          // BlocProvider(
+          //   create: (context) => getIt<HelpBloc>()..add(GetHelpInfo()),
+          // ),
+          BlocProvider(
+            create: (context) => getIt<CartBloc>()..add(GetCartInfo()),
+          )
+        ],
+        child: AutoTabsRouter(
+          routes: const [
+            HomeRoutes(),
+            Favorite(),
+            Carts(),
+            Natifications(),
+            Menues(),
+          ],
+          builder: (context, child, animation) {
+            final tabsRouter = AutoTabsRouter.of(context);
+            final currentIndex =
+                AutoTabsRouter.of(context, watch: true).activeIndex;
+            return Scaffold(
+                body: FadeTransition(opacity: animation, child: child),
+                bottomNavigationBar: BottomNavigationBar(
+                    type: BottomNavigationBarType.fixed,
+                    currentIndex: tabsRouter.activeIndex,
+                    onTap: (index) async {
+                      if (index == currentIndex) {
+                        await _canPopSelf(tabsRouter);
+                      } else {
+                        tabsRouter.setActiveIndex(index);
+                        if (index == 2) {
+                          BlocProvider.of<CartBloc>(context).add(GetCartInfo());
+                        }
+                      }
+                    },
+                    selectedFontSize: 12,
+                    unselectedFontSize: 12,
+                    backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+                    showSelectedLabels: false,
+                    showUnselectedLabels: false,
+                    items: [
+                      BottomNavigationBarItem(
+                        icon: ColorFiltered(
                           colorFilter: ColorFilter.mode(
                             tabsRouter.activeIndex == 0
-                              ? AppColors.primaryBottonBlue
-                              : Color(0xFFA1A7B1), BlendMode.srcIn,
-                      ),
-                        child: SvgPicture.asset('assets/images/home.svg',
+                                ? AppColors.primaryBottonBlue
+                                : Color(0xFFA1A7B1),
+                            BlendMode.srcIn,
                           ),
+                          child: SvgPicture.asset(
+                            'assets/images/home.svg',
+                          ),
+                        ),
+                        label: 'Home',
                       ),
-                      label: 'Home',
-                    ),
-                    BottomNavigationBarItem(
-                      icon: ColorFiltered(
-                      colorFilter: ColorFilter.mode(
-                        tabsRouter.activeIndex == 1
-                            ? AppColors.primaryBottonBlue
-                            : Color(0xFFA1A7B1),
-                        BlendMode.srcIn,
+                      BottomNavigationBarItem(
+                        icon: ColorFiltered(
+                          colorFilter: ColorFilter.mode(
+                            tabsRouter.activeIndex == 1
+                                ? AppColors.primaryBottonBlue
+                                : Color(0xFFA1A7B1),
+                            BlendMode.srcIn,
+                          ),
+                          child: SvgPicture.asset(
+                            'assets/images/favorites.svg',
+                          ),
+                        ),
+                        label: 'Search',
                       ),
-                      child: SvgPicture.asset(
-                        'assets/images/favorites.svg',
+                      BottomNavigationBarItem(
+                        icon: ColorFiltered(
+                          colorFilter: ColorFilter.mode(
+                            tabsRouter.activeIndex == 2
+                                ? AppColors.primaryBottonBlue
+                                : Color(0xFFA1A7B1),
+                            BlendMode.srcIn,
+                          ),
+                          child: SvgPicture.asset(
+                            'assets/images/card_c.svg',
+                          ),
+                        ),
+                        label: 'Bookmark',
                       ),
-                    ),
-                      label: 'Search',
-                    ),
-                     BottomNavigationBarItem(
-                      icon: ColorFiltered(
-                      colorFilter: ColorFilter.mode(
-                        tabsRouter.activeIndex == 2
-                            ? AppColors.primaryBottonBlue
-                            : Color(0xFFA1A7B1),
-                        BlendMode.srcIn,
+                      BottomNavigationBarItem(
+                        icon: ColorFiltered(
+                          colorFilter: ColorFilter.mode(
+                            tabsRouter.activeIndex == 3
+                                ? AppColors.primaryBottonBlue
+                                : Color(0xFFA1A7B1),
+                            BlendMode.srcIn,
+                          ),
+                          child: SvgPicture.asset(
+                            'assets/images/uved.svg',
+                          ),
+                        ),
+                        label: 'Calendar',
                       ),
-                      child: SvgPicture.asset(
-                        'assets/images/card_c.svg',
+                      BottomNavigationBarItem(
+                        icon: ColorFiltered(
+                          colorFilter: ColorFilter.mode(
+                            tabsRouter.activeIndex == 4
+                                ? AppColors.primaryBottonBlue
+                                : Color(0xFFA1A7B1),
+                            BlendMode.srcIn,
+                          ),
+                          child: SvgPicture.asset(
+                            'assets/images/menu.svg',
+                          ),
+                        ),
+                        label: 'Notifications',
                       ),
-                    ),
-                      label: 'Bookmark',
-                    ),
-                    BottomNavigationBarItem(
-                      icon: ColorFiltered(
-                      colorFilter: ColorFilter.mode(
-                        tabsRouter.activeIndex == 3
-                            ? AppColors.primaryBottonBlue
-                            : Color(0xFFA1A7B1),
-                        BlendMode.srcIn,
-                      ),
-                      child: SvgPicture.asset(
-                        'assets/images/uved.svg',
-                      ),
-                    ),
-                      label: 'Calendar',
-                    ),
-                    BottomNavigationBarItem(
-                      icon: ColorFiltered(
-                      colorFilter: ColorFilter.mode(
-                        tabsRouter.activeIndex == 4
-                            ? AppColors.primaryBottonBlue
-                            : Color(0xFFA1A7B1),
-                        BlendMode.srcIn,
-                      ),
-                      child: SvgPicture.asset(
-                        'assets/images/menu.svg',
-                      ),
-                    ),
-                      label: 'Notifications',
-                    ),
-                  ])
-                  );
-        
-      },)
-    );
+                    ]));
+          },
+        ));
   }
 }
 

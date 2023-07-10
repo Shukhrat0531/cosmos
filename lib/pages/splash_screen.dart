@@ -5,7 +5,7 @@ import 'package:cosmos/locals.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../routes/routes.gr.dart';
+// import '../routes/routes.gr.dart';
 
 
 Widget slideContent(String imagePath, String slideTitle) {

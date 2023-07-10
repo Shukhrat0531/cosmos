@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../const/const.dart';
-import '../pages/home/game_detailist/game_detailist.dart';
+// import '../pages/home/game_detailist/game_detailist.dart';
 import '../routes/routes.gr.dart';
 
 class CategorySlider extends StatefulWidget {

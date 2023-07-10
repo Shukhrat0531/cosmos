@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../../const/const.dart';
 import '../../routes/routes.gr.dart';
-import '../cart/cart_item.dart';
+// import '../cart/cart_item.dart';
 
 class PayOrder extends StatefulWidget {
   const PayOrder({super.key});
